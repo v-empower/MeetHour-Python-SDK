@@ -1,6 +1,6 @@
 # MeetHour-Python-Example
 
-![MeetHour Logo](logo.png)
+![MeetHour Logo](https://raw.githubusercontent.com/v-empower/MeetHour-Python-SDK/master/logo.png)
 
 [Meet Hour - 100% free video conference solution](https://meethour.io)
 Meet Hour is 100% free video conference solution with End to End Encrypted and many other features such as lobby mode, Donor box & Click&Pledge Connect for fundraising, Video call recording, Youtube Live Stream etc.
@@ -22,7 +22,7 @@ Meet Hour is 100% free video conference solution with End to End Encrypted and m
     2. Android - https://bit.ly/2U239ll
     3. iOS - https://apple.co/3k8Rpbn
 
-![ScreenShot](screenshot.png)
+![ScreenShot](https://raw.githubusercontent.com/v-empower/MeetHour-Python-SDK/master/screenshot.png)
 
 # MeetHour API Documentation
 
