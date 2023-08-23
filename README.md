@@ -39,90 +39,53 @@ Using [poetry](https://python-poetry.org/):
 
 `poetry add pymeethour`
 
-### Steps to run the Example
-
-1. Go to meethour.io and signup for Developer or Higher plan. Currently we offer 28 days free trial. 
-2. Go to the dashboard and then click on developers menu. 
-3. Later go to constants.php and enter all the credentials of database and Meet Hour credentials as well. 
-4. On Home page Click on Get Access Token 
-5. Then Try Schedule a Meeting & Join Meeting. 
-
 ### Usage
 
 Provide your credentials in the constructor of Login object and hit the login api to get your access token. Which will further be used for making rest of the api calls.
 
 ```
-    from pymeethour.type import LoginType, ScheduleMeetingType, ViewMeetings, GenerateJwtType
-    from pymeethour.services import apiServices as apiServices
+from flask import Flask, render_template_string
+from pymeethour.type import LoginType, ScheduleMeetingType, ViewMeetings, GenerateJwtType
+from pymeethour.services import apiServices as apiServices
 
-    apiservice = apiServices.MHApiService()
+app = Flask(__name__)
+app.secret_key = "qwerty"
 
-    CLIENT_ID=''
-    CLIENT_SECRET=''
-    GRANT_TYPE='password'
-    EMAIL=''
-    PASSWORD=''
+CLIENT_ID=''
+CLIENT_SECRET=''
+GRANT_TYPE=''
+EMAIL=''
+PASSWORD=''
+API_KEY=''
+API_RELEASE='v2.4.6'
+CONFERENCE_URL='meethour.io'
 
-    loginBody = LoginType.LoginType('CLIENT_ID', 'CLIENT_SECRET', 'GRANT_TYPE', 'EMAIL', 'PASSWORD')
-            login_response = apiservice.login(loginBody)
+apiservice = apiServices.MHApiService()
 
-    scheduleMeetingBody= ScheduleMeetingType.ScheduleMeeting()
-            schedule_meeting_response = apiservice.schedule_meeting(login_response->token, scheduleMeetingBody)
+@app.route('/', methods=['GET'])
+def usage():
+    loginBody = LoginType.LoginType(CLIENT_ID, CLIENT_SECRET, GRANT_TYPE, EMAIL, PASSWORD)
+    login_response = apiservice.login(loginBody)
 
-    viewMeetingBody = ViewMeetings.ViewMeeting(schedule_meeting_response->meeting_id)
-            view_meetings_response = apiservice.view_meetings(token, viewMeetingBody)
-    
-    GenerateJWTBody = GenerateJwtType.ViewMeeting()
-        generate_response = apiservice.view_meetings(login_response->token, GenerateJWTBody)
+    scheduleMeetingBody= ScheduleMeetingType.ScheduleMeeting("Meeting Test", "123456", "10:00", "PM", "23-06-2030", "Asia/Kolkata")
+    schedule_meeting_response = apiservice.schedule_meeting(login_response.get('access_token'), scheduleMeetingBody)
 
-    return render_template(
-        '<script type="text/javascript" src="https://api.meethour.io/libs/{{API_RELEASE}}/external_api.min.js?apiKey={{API_KEY}}"></script>
-            <div class="relative" id="conference-parent"></div>
-            <script type="text/javascript">
-            try {
+    viewMeetingBody = ViewMeetings.ViewMeeting(schedule_meeting_response.get('data').get('meeting_id'))
+    view_meetings_response = apiservice.view_meetings(login_response.get('access_token'), viewMeetingBody)
 
-                const conferencePanel = document.createElement("div");
-                conferencePanel.setAttribute("id", "conference");
-                conferencePanel.setAttribute("style", "height: 100%;");
-                const meetingPanel = document.querySelector("#conference-parent");
-                meetingPanel.appendChild(conferencePanel);
-            
-                var domain = "{{CONFERENCE_URL}}";
-                var options = {
-                roomName: "{{meeting_id}}", 
-                parentNode: document.querySelector("#conference"),
-                jwt: "{{jwt_token}}",
-                apiKey: "{{API_KEY}}",
-                pcode: "{{pCode}}",
-                interfaceConfigOverwrite: {
-                    applyMeetingSettings: true, // This is managed from this page - https://portal.meethour.io/customer/ui_settings
-                    disablePrejoinHeader: true,
-                    disablePrejoinFooter: true,
-                    SHOW_MEET_HOUR_WATERMARK: false,
-                    ENABLE_DESKTOP_DEEPLINK: false,
-                    HIDE_DEEP_LINKING_LOGO: true,
-                    MOBILE_APP_PROMO: false,
-                    ENABLE_MOBILE_BROWSER: true,
-                },
-                };
-                
-                // Initialization of MeetHour External API
-                var api = new MeetHourExternalAPI(domain, options);
-                
-                // api variable can be used to run other event listeners mentioned in the documentation below.
-            
-            } catch (error) {
-            
-                console.log(error);
-            }
-            </script>',
-        meeting_id=view_meetings_response->meeting_id,
-        jwt_token=jwt_token,
-        pCode=view_meetings_response->pcode, 
-        API_KEY=API_KEY, // pass these parameters
-        API_RELEASE=API_RELEASE, // pass these parameters
+    GenerateJWTBody = GenerateJwtType.GenerateJwt(view_meetings_response.get('meeting').get('meeting_id'))
+    generate_response = apiservice.generate_jwt(login_response.get('access_token'), GenerateJWTBody)
+
+    return render_template_string('<script type="text/javascript" src="https://api.meethour.io/libs/{{API_RELEASE}}/external_api.min.js?apiKey={{API_KEY}}"></script><div class="relative" id="conference-parent"></div><script type="text/javascript">try { const conferencePanel = document.createElement("div"); conferencePanel.setAttribute("id", "conference");conferencePanel.setAttribute("style", "height: 100%;");const meetingPanel = document.querySelector("#conference-parent");meetingPanel.appendChild(conferencePanel);var domain = "{{CONFERENCE_URL}}";var options = {roomName: "{{meeting_id}}", parentNode: document.querySelector("#conference"),jwt: "{{jwt_token}}",apiKey: "{{API_KEY}}",pcode: "{{pCode}}",interfaceConfigOverwrite: {applyMeetingSettings: true, disablePrejoinHeader: true,disablePrejoinFooter: true,SHOW_MEET_HOUR_WATERMARK: false,ENABLE_DESKTOP_DEEPLINK: false,HIDE_DEEP_LINKING_LOGO: true,MOBILE_APP_PROMO: false,ENABLE_MOBILE_BROWSER: true,},}; var api = new MeetHourExternalAPI(domain, options); } catch (error) { console.log(error); }</script>',
+        meeting_id = view_meetings_response.get('meeting').get('meeting_id'),
+        jwt_token=generate_response.get('jwt'),
+        pCode=view_meetings_response.get('meeting').get('pcode'), 
+        API_KEY=API_KEY,
+        API_RELEASE=API_RELEASE,
         CONFERENCE_URL=CONFERENCE_URL,
     )
+if __name__ == '__main__':
+        app.run()
 
     
 ```
@@ -154,7 +117,7 @@ Important points:
         from meethour.type import ScheduleMeetingType
         apiservice = apiServices.MHApiService()
 
-        scheduleMeetingBody= ScheduleMeetingType.ScheduleMeeting( )
+        scheduleMeetingBody= ScheduleMeetingType.("Meeting Test", "123456", "10:00", "PM", "23-06-2030", "Asia/Kolkata")
         schedule_meeting_response = apiservice.schedule_meeting(token, scheduleMeetingBody)
         print(schedule_meeting_response)
 

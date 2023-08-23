@@ -1,20 +1,20 @@
-import src.meethour.type.LoginType as LoginType
-import src.meethour.type.AddContactType as AddContactType
-import src.meethour.type.ContactsType as ContactsType
-import src.meethour.type.EditContactType as EditContactType
-import src.meethour.type.EditMeetingType as EditMeetingType
-import src.meethour.type.GenerateJwtType as GenerateJwtType
-import src.meethour.type.ScheduleMeetingType as ScheduleMeetingType
-import src.meethour.type.CompletedMeetingsType as CompletedMeetingsType
-import src.meethour.type.MissedMeeting as MissedMeeting
-import src.meethour.type.ArchiveMeeting as ArchiveMeeting
-import src.meethour.type.UpcomingMeetings as UpcomingMeetings
-import src.meethour.type.ViewMeetings as ViewMeetings
-import src.meethour.type.RecordingsList as RecordingsList
-import src.meethour.type.RefreshToken as RefreshToken
-import src.meethour.services.apiServices as apiServices
-import src.meethour.type.time_zone as time_zone
-import src.meethour.type.user_details as user_details
+import pymeethour.type.LoginType as LoginType
+import pymeethour.type.AddContactType as AddContactType
+import pymeethour.type.ContactsType as ContactsType
+import pymeethour.type.EditContactType as EditContactType
+import pymeethour.type.EditMeetingType as EditMeetingType
+import pymeethour.type.GenerateJwtType as GenerateJwtType
+import pymeethour.type.ScheduleMeetingType as ScheduleMeetingType
+import pymeethour.type.CompletedMeetingsType as CompletedMeetingsType
+import pymeethour.type.MissedMeeting as MissedMeeting
+import pymeethour.type.ArchiveMeeting as ArchiveMeeting
+import pymeethour.type.UpcomingMeetings as UpcomingMeetings
+import pymeethour.type.ViewMeetings as ViewMeetings
+import pymeethour.type.RecordingsList as RecordingsList
+import pymeethour.type.RefreshToken as RefreshToken
+import pymeethour.services.apiServices as apiServices
+import pymeethour.type.time_zone as time_zone
+import pymeethour.type.user_details as user_details
 
 
 login_object = LoginType.LoginType('CLIENT_ID','CLIENT_SECRET','API_KEY','EMAIL','PASSWORD') # repalce details with the your own developer's details
