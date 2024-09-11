@@ -13,12 +13,23 @@ from webhook_payloads import Payloads
 
 
 def compute_signature(secret_key, payload):
+    """
+
+    :param secret_key: 
+    :param payload: 
+
+    """
     h = CryptoHMAC.HMAC(secret_key.encode(), hashes.SHA256(), backend=default_backend())
     h.update(payload.encode())
     return h.finalize().hex()
 
 
 def send_payload(payload):
+    """
+
+    :param payload: 
+
+    """
     # Convert payload to JSON string if not already
     payload_json = json.dumps(payload)
     signature = compute_signature(SECRET_KEY, payload_json)
@@ -42,10 +53,12 @@ def send_payload(payload):
 
 
 def start_server():
+    """ """
     run()
 
 
 def select_payload():
+    """ """
     payloads_instance = Payloads()
     payloads = payloads_instance.get_payloads()
     print("Select an event type to send:")

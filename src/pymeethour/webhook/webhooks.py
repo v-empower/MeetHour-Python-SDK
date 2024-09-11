@@ -9,10 +9,17 @@ from cryptography.hazmat.primitives import hmac as CryptoHMAC
 
 
 class WebhookHandler:
+    """ """
     def __init__(self, secret):
         self.secret = secret
 
     def handle_request(self, request_body, headers):
+        """
+
+        :param request_body: 
+        :param headers: 
+
+        """
         payload = request_body
         signature = headers.get("X-Signature")
 
@@ -41,6 +48,12 @@ class WebhookHandler:
         return json.dumps(response), status_code
 
     def validate_signature(self, payload, signature):
+        """
+
+        :param payload: 
+        :param signature: 
+
+        """
         h = CryptoHMAC.HMAC(
             self.secret.encode(), hashes.SHA256(), backend=default_backend()
         )
@@ -49,6 +62,12 @@ class WebhookHandler:
         return hmac.compare_digest(expected_signature, signature)
 
     def process_event(self, data, payload):
+        """
+
+        :param data: 
+        :param payload: 
+
+        """
         event_type = data.get("event_type")
         if event_type == "join_meeting":
             return self.handle_join_meeting(data)
@@ -65,6 +84,11 @@ class WebhookHandler:
             }, 400
 
     def handle_join_meeting(self, data):
+        """
+
+        :param data: 
+
+        """
         response = {
             "status": True,
             "code": 200,
@@ -77,6 +101,11 @@ class WebhookHandler:
         return response, 200
 
     def handle_exit_meeting(self, data):
+        """
+
+        :param data: 
+
+        """
         response = {
             "status": True,
             "code": 200,
@@ -89,6 +118,11 @@ class WebhookHandler:
         return response, 200
 
     def handle_save_meeting_recording(self, data):
+        """
+
+        :param data: 
+
+        """
         response = {
             "status": True,
             "code": 200,
@@ -101,5 +135,10 @@ class WebhookHandler:
         return response, 200
 
     def log_data(self, data):
+        """
+
+        :param data: 
+
+        """
         # Replace with your actual logging logic here
         pass  # No print statement or other logging method shown

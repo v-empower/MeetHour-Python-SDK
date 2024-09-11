@@ -1,4 +1,5 @@
 class Payloads:
+    """ """
     def __init__(self):
         self.payloads = [
             {
@@ -77,4 +78,5 @@ class Payloads:
         ]
 
     def get_payloads(self):
+        """ """
         return self.payloads

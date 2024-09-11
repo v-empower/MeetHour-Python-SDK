@@ -6,10 +6,12 @@ from webhooks import WebhookHandler  # Import WebhookHandler from webhooks.py
 
 
 class MyHandler(BaseHTTPRequestHandler):
+    """ """
     # Initialize WebhookHandler with SECRET_KEY
     webhook_handler = WebhookHandler(SECRET_KEY)
 
     def do_POST(self):
+        """ """
         content_length = int(self.headers["Content-Length"])
         post_data = self.rfile.read(content_length).decode()
 
@@ -30,6 +32,13 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
 def run(server_class=HTTPServer, handler_class=MyHandler, port=8080):
+    """
+
+    :param server_class:  (Default value = HTTPServer)
+    :param handler_class:  (Default value = MyHandler)
+    :param port:  (Default value = 8080)
+
+    """
     server_address = ("", port)
     httpd = server_class(server_address, handler_class)
     print(f"Starting httpd server on port {port}...")  # Server port details
