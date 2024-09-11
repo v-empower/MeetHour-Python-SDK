@@ -1,7 +1,8 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
-from webhooks import WebhookHandler  # Import WebhookHandler from webhooks.py
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
 from key import SECRET_KEY
+from webhooks import WebhookHandler  # Import WebhookHandler from webhooks.py
 
 
 class MyHandler(BaseHTTPRequestHandler):
