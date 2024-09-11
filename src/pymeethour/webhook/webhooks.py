@@ -17,8 +17,8 @@ class WebhookHandler:
     def handle_request(self, request_body, headers):
         """
 
-        :param request_body:
-        :param headers:
+        :param request_body: param headers:
+        :param headers: 
 
         """
         payload = request_body
@@ -51,8 +51,8 @@ class WebhookHandler:
     def validate_signature(self, payload, signature):
         """
 
-        :param payload:
-        :param signature:
+        :param payload: param signature:
+        :param signature: 
 
         """
         h = CryptoHMAC.HMAC(
@@ -65,8 +65,8 @@ class WebhookHandler:
     def process_event(self, data, payload):
         """
 
-        :param data:
-        :param payload:
+        :param data: param payload:
+        :param payload: 
 
         """
         event_type = data.get("event_type")
@@ -87,7 +87,7 @@ class WebhookHandler:
     def handle_join_meeting(self, data):
         """
 
-        :param data:
+        :param data: 
 
         """
         response = {
@@ -104,7 +104,7 @@ class WebhookHandler:
     def handle_exit_meeting(self, data):
         """
 
-        :param data:
+        :param data: 
 
         """
         response = {
@@ -121,7 +121,7 @@ class WebhookHandler:
     def handle_save_meeting_recording(self, data):
         """
 
-        :param data:
+        :param data: 
 
         """
         response = {
@@ -138,7 +138,7 @@ class WebhookHandler:
     def log_data(self, data):
         """
 
-        :param data:
+        :param data: 
 
         """
         # Replace with your actual logging logic here
