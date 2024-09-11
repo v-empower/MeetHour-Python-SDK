@@ -5,6 +5,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from cryptography.hazmat.primitives import hashes, hmac as CryptoHMAC
 from cryptography.hazmat.backends import default_backend
 
+
 class WebhookHandler:
     def __init__(self, secret):
         self.secret = secret
@@ -19,16 +20,19 @@ class WebhookHandler:
                 self.log_data(data)
                 response, status_code = self.process_event(data, payload)
             except json.JSONDecodeError:
-                response = {'status': False, 'code': 400, 'message': 'Invalid JSON payload.', 'data': None}
+                response = {'status': False, 'code': 400,
+                            'message': 'Invalid JSON payload.', 'data': None}
                 status_code = 400
         else:
-            response = {'status': False, 'code': 400, 'message': 'Invalid signature or signature missing.', 'data': None}
+            response = {'status': False, 'code': 400,
+                        'message': 'Invalid signature or signature missing.', 'data': None}
             status_code = 400
 
-        return json.dumps(response), status_code 
+        return json.dumps(response), status_code
 
     def validate_signature(self, payload, signature):
-        h = CryptoHMAC.HMAC(self.secret.encode(), hashes.SHA256(), backend=default_backend())
+        h = CryptoHMAC.HMAC(self.secret.encode(),
+                            hashes.SHA256(), backend=default_backend())
         h.update(payload.encode())
         expected_signature = h.finalize().hex()
         return hmac.compare_digest(expected_signature, signature)
@@ -79,6 +83,7 @@ class WebhookHandler:
             'data': data
         }
         return response, 200
+
     def log_data(self, data):
         # Replace with your actual logging logic here
         pass  # No print statement or other logging method shown
