@@ -1,4 +1,4 @@
-# MeetHour-Python-Example
+# MeetHour-Python-SDK
 
 ![MeetHour Logo](https://raw.githubusercontent.com/v-empower/MeetHour-Python-SDK/master/logo.png)
 
