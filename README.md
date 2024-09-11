@@ -39,7 +39,7 @@ Using [poetry](https://python-poetry.org/):
 
 `poetry add pymeethour`
 
-### Usage
+### API Usage
 
 Provide your credentials in the constructor of Login object and hit the login api to get your access token. Which will further be used for making rest of the api calls.
 
@@ -87,7 +87,38 @@ def usage():
 if __name__ == '__main__':
         app.run()
 
-    
+```
+
+### Webhooks Usage ([Documentation](https://docs.v-empower.com/docs/MeetHour-API/l1w139chzqcpp-meethour-webhooks))
+
+```
+from pymeethour.webhook import webhooks
+import pymeethour.services.apiServices as apiServices
+
+from cryptography.hazmat.primitives import hashes, hmac as CryptoHMAC
+from cryptography.hazmat.backends import default_backend
+
+SECRET_KEY = '<Signing secret>' # Available on https://portal.meethour.io/customer/webhooksettings
+
+webhook_handler = webhooks.WebhookHandler(SECRET_KEY)
+ 
+@app.route('/webhooks', methods=['GET', 'POST'])
+def webhooks_start():
+              
+        data = request.get_data(as_text=True)
+
+        # For Meet Hour
+        response = webhook_handler.handle_request(data, request.headers)
+        
+        # Log the incoming data using WebhookHandler's log_data method
+        webhook_handler.log_data(request)
+
+        session['meethour_webhook'] = response
+        
+        # Print server response (optional)
+        print(f"Server response: {response}")
+        return json.dumps(response), 200
+
 ```
 
 ### API End Points Supported
