@@ -15,7 +15,7 @@ from webhook_payloads import Payloads
 def compute_signature(secret_key, payload):
     """
 
-    :param secret_key:
+    :param secret_key: param payload:
     :param payload:
 
     """

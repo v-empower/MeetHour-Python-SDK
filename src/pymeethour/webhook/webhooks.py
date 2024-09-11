@@ -18,7 +18,7 @@ class WebhookHandler:
     def handle_request(self, request_body, headers):
         """
 
-        :param request_body:
+        :param request_body: param headers:
         :param headers:
 
         """
@@ -52,7 +52,7 @@ class WebhookHandler:
     def validate_signature(self, payload, signature):
         """
 
-        :param payload:
+        :param payload: param signature:
         :param signature:
 
         """
@@ -66,7 +66,7 @@ class WebhookHandler:
     def process_event(self, data, payload):
         """
 
-        :param data:
+        :param data: param payload:
         :param payload:
 
         """
