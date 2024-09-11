@@ -78,9 +78,9 @@ class Payloads:
                 "event_type": "Unknown_event",
                 "event_id": "ukn_b53f85d54ccd3a3669034fce77d98gp4d",
                 "timestamp": "2024-05-24T14:05:37Z",
-                "data": { }
+                "data": {}
             }
         ]
 
-    def get_payloads(self): 
+    def get_payloads(self):
         return self.payloads
