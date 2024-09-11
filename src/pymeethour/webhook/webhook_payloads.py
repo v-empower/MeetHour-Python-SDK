@@ -15,8 +15,7 @@ class Payloads:
                     },
                     "recording_type": "Custom",
                     "recording_name": "MHR240430125504-1714552910.mp4",
-                    "recording_path":
-                    "https://meethour-recording.s3.amazonaws.com/recordings/125504/MHR240430125504/1714552910/MHR240430125504-1714552910.mp4?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIASTOG4L4UPVPXO6CP%2F20240509%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240509T104109Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=8814bbcc9240a138f466f307ac4826a28d4013d3865e2402c06a8618c2d4e324",
+                    "recording_path": "https://meethour-recording.s3.amazonaws.com/recordings/125504/MHR240430125504/1714552910/MHR240430125504-1714552910.mp4?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIASTOG4L4UPVPXO6CP%2F20240509%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240509T104109Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604800&X-Amz-Signature=8814bbcc9240a138f466f307ac4826a28d4013d3865e2402c06a8618c2d4e324",
                     "recording_date": "2024-05-09 10:41:06",
                     "status": 1,
                     "duration": "0:03:5",
@@ -33,10 +32,7 @@ class Payloads:
                 "timestamp": "2024-05-24T14:05:37Z",
                 "data": {
                     "meeting_id": "MHR2405241977",
-                    "attendee": {
-                        "name": "syam",
-                        "email": "syam.prasad@mailinator.com"
-                    },
+                    "attendee": {"name": "syam", "email": "syam.prasad@mailinator.com"},
                     "login_datetime": "2024-05-24 14:03:14",
                     "user_agent": "chrome",
                     "access_type": "app",
@@ -58,10 +54,7 @@ class Payloads:
                 "timestamp": "2024-05-24T14:05:37Z",
                 "data": {
                     "meeting_id": "MHR2405241977",
-                    "attendee": {
-                        "name": "syam",
-                        "email": "syam.prasad@mailinator.com"
-                    },
+                    "attendee": {"name": "syam", "email": "syam.prasad@mailinator.com"},
                     "logout_datetime": "2024-05-24 14:04:08",
                     "user_agent": "chrome",
                     "access_type": "app",

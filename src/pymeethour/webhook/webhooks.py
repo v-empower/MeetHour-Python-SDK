@@ -56,9 +56,9 @@ class WebhookHandler:
         :param signature:
 
         """
-        h = CryptoHMAC.HMAC(self.secret.encode(),
-                            hashes.SHA256(),
-                            backend=default_backend())
+        h = CryptoHMAC.HMAC(
+            self.secret.encode(), hashes.SHA256(), backend=default_backend()
+        )
         h.update(payload.encode())
         expected_signature = h.finalize().hex()
         return hmac.compare_digest(expected_signature, signature)

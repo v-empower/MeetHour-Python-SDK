@@ -19,9 +19,7 @@ def compute_signature(secret_key, payload):
     :param payload:
 
     """
-    h = CryptoHMAC.HMAC(secret_key.encode(),
-                        hashes.SHA256(),
-                        backend=default_backend())
+    h = CryptoHMAC.HMAC(secret_key.encode(), hashes.SHA256(), backend=default_backend())
     h.update(payload.encode())
     return h.finalize().hex()
 
