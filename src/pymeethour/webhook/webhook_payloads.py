@@ -9,7 +9,7 @@ class Payloads:
                     "meeting_id": "MHR240416944",
                     "customer": {
                         "name": "Padmanabha",
-                        "email": "padmanabham2005@gmail.com"
+                        "email": "padmanabham2005@gmail.com",
                     },
                     "recording_type": "Custom",
                     "recording_name": "MHR240430125504-1714552910.mp4",
@@ -21,8 +21,8 @@ class Payloads:
                     "recording_size": 6,
                     "recording_size_unit": "MB",
                     "recording_expiry": "2024-05-16 10:41:09",
-                    "time_zone": "UTC"
-                }
+                    "time_zone": "UTC",
+                },
             },
             {
                 "event_type": "join_meeting",
@@ -30,10 +30,7 @@ class Payloads:
                 "timestamp": "2024-05-24T14:05:37Z",
                 "data": {
                     "meeting_id": "MHR2405241977",
-                    "attendee": {
-                        "name": "syam",
-                        "email": "syam.prasad@mailinator.com"
-                    },
+                    "attendee": {"name": "syam", "email": "syam.prasad@mailinator.com"},
                     "login_datetime": "2024-05-24 14:03:14",
                     "user_agent": "chrome",
                     "access_type": "app",
@@ -45,9 +42,9 @@ class Payloads:
                         "postal": "500016",
                         "latitude": 17.4427,
                         "longitude": 78.4751,
-                        "state": "Telangana"
-                    }
-                }
+                        "state": "Telangana",
+                    },
+                },
             },
             {
                 "event_type": "exit_meeting",
@@ -55,10 +52,7 @@ class Payloads:
                 "timestamp": "2024-05-24T14:05:37Z",
                 "data": {
                     "meeting_id": "MHR2405241977",
-                    "attendee": {
-                        "name": "syam",
-                        "email": "syam.prasad@mailinator.com"
-                    },
+                    "attendee": {"name": "syam", "email": "syam.prasad@mailinator.com"},
                     "logout_datetime": "2024-05-24 14:04:08",
                     "user_agent": "chrome",
                     "access_type": "app",
@@ -70,16 +64,16 @@ class Payloads:
                         "postal": "500016",
                         "latitude": 17.4427,
                         "longitude": 78.4751,
-                        "state": "Telangana"
-                    }
-                }
+                        "state": "Telangana",
+                    },
+                },
             },
             {
                 "event_type": "Unknown_event",
                 "event_id": "ukn_b53f85d54ccd3a3669034fce77d98gp4d",
                 "timestamp": "2024-05-24T14:05:37Z",
-                "data": {}
-            }
+                "data": {},
+            },
         ]
 
     def get_payloads(self):
