@@ -9,6 +9,7 @@ homepage='https://github.com/v-empower/MeetHour-Python-SDK'
 [tool.poetry.dependencies]
 python = "^3.7"
 requests = "^2.23.0"
+cryptography = "^43.0.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1"
