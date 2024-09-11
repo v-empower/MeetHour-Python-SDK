@@ -17,7 +17,8 @@ class MyHandler(BaseHTTPRequestHandler):
         post_data = self.rfile.read(content_length).decode()
 
         # Handle the request and get the response and status code
-        response, status = self.webhook_handler.handle_request(post_data, self.headers)
+        response, status = self.webhook_handler.handle_request(
+            post_data, self.headers)
 
         # Log the incoming data using WebhookHandler's log_data method
         self.webhook_handler.log_data(post_data)
