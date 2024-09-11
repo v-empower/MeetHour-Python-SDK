@@ -1,8 +1,7 @@
 import hmac
 import json
 import time
-from http.server import BaseHTTPRequestHandler
-from http.server import HTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
